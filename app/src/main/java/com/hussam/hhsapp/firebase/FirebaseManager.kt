@@ -14,12 +14,11 @@ object FirebaseManager {
     private val productsRef = database.getReference("products")
     private val ordersRef = database.getReference("orders")
 
-    // جلب إيميل المستخدم الحالي المسجل في التطبيق
     fun getCurrentUserEmail(): String {
         return auth.currentUser?.email ?: "ضيف غريب"
     }
 
-    // --- دوال الحسابات ---
+    // --- الحسابات ---
     fun registerWithEmail(user: User, password: String, onComplete: (Boolean, String?) -> Unit) {
         auth.createUserWithEmailAndPassword(user.email, password)
             .addOnSuccessListener { result ->
@@ -38,11 +37,10 @@ object FirebaseManager {
             .addOnFailureListener { e -> onComplete(false, e.message) }
     }
 
-    // --- دوال المنتجات ---
+    // --- المنتجات ---
     fun addProduct(product: Product, onComplete: (Boolean) -> Unit) {
         val newKey = productsRef.push().key ?: return onComplete(false)
         val finalProduct = product.copy(id = newKey)
-        
         productsRef.child(newKey).setValue(finalProduct)
             .addOnSuccessListener { onComplete(true) }
             .addOnFailureListener { onComplete(false) }
@@ -62,18 +60,43 @@ object FirebaseManager {
                 }
                 onResult(productList)
             }
-            .addOnFailureListener {
-                onResult(emptyList())
-            }
+            .addOnFailureListener { onResult(emptyList()) }
     }
 
-    // --- دالة رفع الطلبات الجديدة سحابياً ---
+    // --- الطلبات ---
     fun placeOrder(order: Order, onComplete: (Boolean) -> Unit) {
         val newOrderKey = ordersRef.push().key ?: return onComplete(false)
         val finalOrder = order.copy(orderId = newOrderKey)
-
         ordersRef.child(newOrderKey).setValue(finalOrder)
             .addOnSuccessListener { onComplete(true) }
             .addOnFailureListener { onComplete(false) }
+    }
+
+    // جلب كل الطلبات سحابياً (خاص بلوحة الإدارة)
+    fun getAllOrders(onResult: (List<Order>) -> Unit) {
+        ordersRef.get().addOnSuccessListener { snapshot ->
+            val orderList = mutableListOf<Order>()
+            if (snapshot.exists()) {
+                for (child in snapshot.children) {
+                    val order = child.getValue(Order::class.java)
+                    if (order != null) orderList.add(order)
+                }
+            }
+            onResult(orderList)
+        }.addOnFailureListener { onResult(emptyList()) }
+    }
+
+    // جلب طلبات زبون محدد فقط بناءً على إيميله
+    fun getOrdersByUser(email: String, onResult: (List<Order>) -> Unit) {
+        ordersRef.orderByChild("userEmail").equalTo(email).get().addOnSuccessListener { snapshot ->
+            val orderList = mutableListOf<Order>()
+            if (snapshot.exists()) {
+                for (child in snapshot.children) {
+                    val order = child.getValue(Order::class.java)
+                    if (order != null) orderList.add(order)
+                }
+            }
+            onResult(orderList)
+        }.addOnFailureListener { onResult(emptyList()) }
     }
 }

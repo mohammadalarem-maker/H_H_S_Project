@@ -27,9 +27,10 @@
         <activity android:name=".ui.AddProductActivity" android:exported="false" />
         <activity android:name=".ui.ProductDetailActivity" android:exported="false" />
         <activity android:name=".ui.CartActivity" android:exported="false" />
-        
-        <!-- تسجيل شاشة الملف الشخصي وتأمين الحساب الجديدة -->
         <activity android:name=".ui.ProfileActivity" android:exported="false" />
+        
+        <!-- تسجيل شاشة سجل الطلبات الجديدة سحابياً -->
+        <activity android:name=".ui.OrderHistoryActivity" android:exported="false" />
 
     </application>
 

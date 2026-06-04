@@ -14,7 +14,6 @@
         android:textStyle="bold"
         android:layout_marginBottom="32dp"/>
 
-    <!-- أيقونة مستخدم افتراضية -->
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
@@ -22,7 +21,6 @@
         android:layout_marginBottom="16dp"
         android:contentDescription="صورة الحساب"/>
 
-    <!-- عرض البريد الإلكتروني للزبون -->
     <TextView
         android:id="@+id/tvProfileEmail"
         android:layout_width="wrap_content"
@@ -30,9 +28,18 @@
         android:text="بريد المستخدم ستظهر هنا"
         android:textSize="18sp"
         android:textColor="#333333"
-        android:layout_marginBottom="40dp"/>
+        android:layout_marginBottom="30dp"/>
 
-    <!-- زر لوحة الإدارة (سيكون مخفياً بشكل افتراضي ويظهر لك فقط) -->
+    <!-- زر سجل الطلبات الجديد المتاح للجميع -->
+    <Button
+        android:id="@+id/btnOrderHistory"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:text="سجل الطلبات والفواتير 📦"
+        android:textSize="16sp"
+        android:backgroundTint="#009688"
+        android:layout_marginBottom="16dp"/>
+
     <Button
         android:id="@+id/btnAdminPanel"
         android:layout_width="match_parent"
@@ -43,7 +50,6 @@
         android:layout_marginBottom="16dp"
         android:visibility="gone"/>
 
-    <!-- زر تسجيل الخروج -->
     <Button
         android:id="@+id/btnLogout"
         android:layout_width="match_parent"
