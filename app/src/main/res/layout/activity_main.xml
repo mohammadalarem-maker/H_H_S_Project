@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- شريط علوي ترحيبي -->
+    <TextView
+        android:id="@+id/tvWelcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="مرحباً بك في الحسام فون"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:layout_gravity="right"
+        android:layout_marginBottom="24dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="تصفح الأقسام:"
+        android:textSize="16sp"
+        android:layout_gravity="right"
+        android:layout_marginBottom="12dp"/>
+
+    <!-- أزرار الأقسام الرئيسية للمتجر -->
+    <Button
+        android:id="@+id/btnPhones"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="قسم الهواتف الذكية"
+        android:layout_marginBottom="12dp"/>
+
+    <Button
+        android:id="@+id/btnAccessories"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="قسم الإكسسوارات"
+        android:layout_marginBottom="12dp"/>
+
+    <Button
+        android:id="@+id/btnCosmetics"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="قسم مستحضرات التجميل"/>
+
+</LinearLayout>

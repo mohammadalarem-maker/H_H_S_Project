@@ -1,5 +1,6 @@
 package com.hussam.hhsapp.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -17,6 +18,7 @@ class LoginActivity : AppCompatActivity() {
         val etEmail = findViewById<EditText>(R.id.etEmail)
         val etPassword = findViewById<EditText>(R.id.etPassword)
         val btnLogin = findViewById<Button>(R.id.btnLogin)
+        val btnRegister = findViewById<Button>(R.id.btnRegister)
 
         btnLogin.setOnClickListener {
             val email = etEmail.text.toString().trim()
@@ -27,15 +29,23 @@ class LoginActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            // استدعاء محرك الفيربيز الذي جهزناه لتسجيل الدخول
             FirebaseManager.loginWithEmail(email, password) { success, errorMessage ->
                 if (success) {
-                    Toast.makeText(this, "تم تسجيل الدخول بنجاح! أهلاً بك في الحسام", Toast.LENGTH_LONG).show()
-                    // هنا ننتقل لاحقاً للشاشة الرئيسية للمتجر
+                    Toast.makeText(this, "تم تسجيل الدخول بنجاح!", Toast.LENGTH_SHORT).show()
+                    // الانتقال إلى الشاشة الرئيسية للمتجر فوراً
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                    finish() 
                 } else {
                     Toast.makeText(this, "خطأ: $errorMessage", Toast.LENGTH_LONG).show()
                 }
             }
+        }
+
+        // الانتقال لشاشة إنشاء حساب جديد عند الضغط على الزر
+        btnRegister.setOnClickListener {
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
         }
     }
 }
