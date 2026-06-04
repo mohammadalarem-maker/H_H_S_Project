@@ -1,5 +1,11 @@
 package com.hussam.hhsapp.ui.adapter
 import com.hussam.hhsapp.data.model.Order
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
+import com.hussam.hhsapp.R
 
 import android.view.LayoutInflater
 import android.view.View

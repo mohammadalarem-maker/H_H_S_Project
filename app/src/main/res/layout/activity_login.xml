@@ -28,20 +28,6 @@
         android:layout_height="wrap_content"
         android:hint="كلمة المرور"
         android:inputType="textPassword"
-        android:layout_marginBottom="24dp"/>
-
-    <Button
-        android:id="@+id/btnLogin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="تسجيل الدخول"
-        android:layout_marginBottom="12dp"/>
-
-    <Button
-        android:id="@+id/btnRegister"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="إنشاء حساب جديد"
-        style="?android:attr/borderlessButtonStyle"/>
+        android:layout_marginBottom="16dp"/>
 
 </LinearLayout>
