@@ -16,14 +16,20 @@ class MainActivity : AppCompatActivity() {
         val btnAccessories = findViewById<Button>(R.id.btnAccessories)
         val btnCosmetics = findViewById<Button>(R.id.btnCosmetics)
         val btnOpenCart = findViewById<Button>(R.id.btnOpenCart)
+        val btnOpenProfile = findViewById<Button>(R.id.btnOpenProfile)
 
         btnPhones.setOnClickListener { openCategory("هواتف") }
         btnAccessories.setOnClickListener { openCategory("إكسسوارات") }
         btnCosmetics.setOnClickListener { openCategory("مستحضرات تجميل") }
         
-        // فتح شاشة السلة عند الضغط على زر السلة
         btnOpenCart.setOnClickListener {
             val intent = Intent(this, CartActivity::class.java)
+            startActivity(intent)
+        }
+
+        // فتح شاشة الملف الشخصي والحساب
+        btnOpenProfile.setOnClickListener {
+            val intent = Intent(this, ProfileActivity::class.java)
             startActivity(intent)
         }
     }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://sans.android.com/apk/res/android"
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.hussam.hhsapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -26,9 +26,10 @@
         <activity android:name=".ui.ProductListActivity" android:exported="false" />
         <activity android:name=".ui.AddProductActivity" android:exported="false" />
         <activity android:name=".ui.ProductDetailActivity" android:exported="false" />
-        
-        <!-- تسجيل شاشة السلة الجديدة -->
         <activity android:name=".ui.CartActivity" android:exported="false" />
+        
+        <!-- تسجيل شاشة الملف الشخصي وتأمين الحساب الجديدة -->
+        <activity android:name=".ui.ProfileActivity" android:exported="false" />
 
     </application>
 
