@@ -4,6 +4,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.hussam.hhsapp.data.model.User
 import com.hussam.hhsapp.data.model.Product
+import com.hussam.hhsapp.data.model.Order
 
 object FirebaseManager {
 
@@ -11,6 +12,12 @@ object FirebaseManager {
     private val database = FirebaseDatabase.getInstance()
     private val usersRef = database.getReference("users")
     private val productsRef = database.getReference("products")
+    private val ordersRef = database.getReference("orders")
+
+    // جلب إيميل المستخدم الحالي المسجل في التطبيق
+    fun getCurrentUserEmail(): String {
+        return auth.currentUser?.email ?: "ضيف غريب"
+    }
 
     // --- دوال الحسابات ---
     fun registerWithEmail(user: User, password: String, onComplete: (Boolean, String?) -> Unit) {
@@ -31,11 +38,7 @@ object FirebaseManager {
             .addOnFailureListener { e -> onComplete(false, e.message) }
     }
 
-    // --- دوال المنتجات الجديدة ---
-    
-    /**
-     * دالة لإضافة منتج جديد إلى قاعدة البيانات (خاص بالمسؤول)
-     */
+    // --- دوال المنتجات ---
     fun addProduct(product: Product, onComplete: (Boolean) -> Unit) {
         val newKey = productsRef.push().key ?: return onComplete(false)
         val finalProduct = product.copy(id = newKey)
@@ -45,9 +48,6 @@ object FirebaseManager {
             .addOnFailureListener { onComplete(false) }
     }
 
-    /**
-     * دالة لجلب المنتجات بناءً على القسم (مثل: إكسسوارات)
-     */
     fun getProductsByCategory(category: String, onResult: (List<Product>) -> Unit) {
         productsRef.orderByChild("category").equalTo(category).get()
             .addOnSuccessListener { snapshot ->
@@ -65,5 +65,15 @@ object FirebaseManager {
             .addOnFailureListener {
                 onResult(emptyList())
             }
+    }
+
+    // --- دالة رفع الطلبات الجديدة سحابياً ---
+    fun placeOrder(order: Order, onComplete: (Boolean) -> Unit) {
+        val newOrderKey = ordersRef.push().key ?: return onComplete(false)
+        val finalOrder = order.copy(orderId = newOrderKey)
+
+        ordersRef.child(newOrderKey).setValue(finalOrder)
+            .addOnSuccessListener { onComplete(true) }
+            .addOnFailureListener { onComplete(false) }
     }
 }
