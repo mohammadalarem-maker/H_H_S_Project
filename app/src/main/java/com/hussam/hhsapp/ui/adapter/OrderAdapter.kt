@@ -1,4 +1,5 @@
 package com.hussam.hhsapp.ui.adapter
+import com.hussam.hhsapp.data.model.Order
 
 import android.view.LayoutInflater
 import android.view.View
