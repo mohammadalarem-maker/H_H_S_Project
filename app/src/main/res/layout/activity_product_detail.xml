@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:gravity="right">
+
+    <ImageView
+        android:id="@+id/ivDetailImage"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/ic_launcher"
+        android:layout_marginBottom="24dp"
+        android:contentDescription="صورة المنتج الكبيرة"/>
+
+    <TextView
+        android:id="@+id/tvDetailName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="اسم المنتج"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="#333333"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/tvDetailPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0.00 YER"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#E91E63"
+        android:layout_marginBottom="16dp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#DDDDDD"
+        android:layout_marginBottom="16dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="المواصفات والوصف:"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="#555555"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/tvDetailDescription"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="تفاصيل ووصف المنتج ستظهر هنا بالكامل..."
+        android:textSize="16sp"
+        android:textColor="#666666"
+        android:lineSpacingMultiplier="1.2"/>
+
+    <Button
+        android:id="@+id/btnAddToCart"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:text="إضافة إلى سلة المشتريات"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
+
+</LinearLayout>
