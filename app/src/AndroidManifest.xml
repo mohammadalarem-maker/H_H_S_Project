@@ -21,14 +21,11 @@
             </intent-filter>
         </activity>
 
-        <activity 
-            android:name=".ui.RegisterActivity"
-            android:exported="false" />
-
-        <!-- تسجيل الشاشة الرئيسية الجديدة للمتجر -->
-        <activity 
-            android:name=".ui.MainActivity"
-            android:exported="false" />
+        <activity android:name=".ui.RegisterActivity" android:exported="false" />
+        <activity android:name=".ui.MainActivity" android:exported="false" />
+        
+        <!-- تسجيل شاشة عرض قائمة المنتجات الجديدة -->
+        <activity android:name=".ui.ProductListActivity" android:exported="false" />
 
     </application>
 
