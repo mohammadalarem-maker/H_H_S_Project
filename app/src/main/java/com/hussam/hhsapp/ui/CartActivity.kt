@@ -15,21 +15,27 @@ import com.hussam.hhsapp.ui.adapter.CartAdapter
 
 class CartActivity : AppCompatActivity() {
 
+    private lateinit var tvCartTotal: TextView
+    private lateinit var rvCartItems: RecyclerView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cart)
 
-        val rvCartItems = findViewById<RecyclerView>(R.id.rvCartItems)
-        val tvCartTotal = findViewById<TextView>(R.id.tvCartTotal)
+        rvCartItems = findViewById(R.id.rvCartItems)
+        tvCartTotal = findViewById<TextView>(R.id.tvCartTotal)
         val btnCheckout = findViewById<Button>(R.id.btnCheckout)
 
         rvCartItems.layoutManager = LinearLayoutManager(this)
         
+        // إنشاء المحول وتمرير دالة تحديث السعر الإجمالي عند كل عملية حذف
         val items = CartManager.getCartItems()
-        val adapter = CartAdapter(items)
+        val adapter = CartAdapter(items) {
+            updateTotalPrice()
+        }
         rvCartItems.adapter = adapter
         
-        tvCartTotal.text = "${CartManager.getTotalPrice()} YER"
+        updateTotalPrice()
 
         if (items.isEmpty()) {
             Toast.makeText(this, "السلة فارغة حالياً", Toast.LENGTH_SHORT).show()
@@ -42,10 +48,8 @@ class CartActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            // تحويل المنتجات المضافة في السلة إلى نصوص واضحة (مثال: شاحن سريع x2)
             val textItemsList = currentItems.map { "${it.product.name} (الكمية: ${it.quantity})" }
             
-            // تجهيز كائن الفاتورة والطلب
             val newOrder = Order(
                 userEmail = FirebaseManager.getCurrentUserEmail(),
                 items = textItemsList,
@@ -53,18 +57,22 @@ class CartActivity : AppCompatActivity() {
                 timestamp = System.currentTimeMillis()
             )
 
-            // إرسال الفاتورة سحابياً للفيربيز فوراً
             FirebaseManager.placeOrder(newOrder) { success ->
                 if (success) {
                     Toast.makeText(this, "تم إرسال طلبك سحابياً لمتجر الحسام بنجاح! 🎉", Toast.LENGTH_LONG).show()
                     CartManager.clearCart()
-                    tvCartTotal.text = "0.0 YER"
-                    rvCartItems.adapter = CartAdapter(emptyList())
+                    updateTotalPrice()
+                    rvCartItems.adapter = CartAdapter(emptyList()) {}
                     finish()
                 } else {
                     Toast.makeText(this, "فشل إرسال الطلب، تحقق من الشبكة", Toast.LENGTH_SHORT).show()
                 }
             }
         }
+    }
+
+    // دالة لتحديث نص السعر الإجمالي بالريال
+    private fun updateTotalPrice() {
+        tvCartTotal.text = "${CartManager.getTotalPrice()} YER"
     }
 }

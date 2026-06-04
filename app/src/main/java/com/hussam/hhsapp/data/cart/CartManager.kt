@@ -4,10 +4,8 @@ import com.hussam.hhsapp.data.model.CartItem
 import com.hussam.hhsapp.data.model.Product
 
 object CartManager {
-    // قائمة محليّة لحفظ عناصر السلة أثناء تصفح التطبيق
     private val cartItems = mutableListOf<CartItem>()
 
-    // إضافة منتج للسلة، وإذا كان موجوداً مسبقاً تزيد الكمية فقط
     fun addProduct(product: Product) {
         val existingItem = cartItems.find { it.product.id == product.id }
         if (existingItem != null) {
@@ -17,15 +15,17 @@ object CartManager {
         }
     }
 
-    // جلب كل العناصر الموجودة في السلة حالياً
+    // دالة حذف منتج معين بالكامل من السلة
+    fun removeProduct(productId: String) {
+        cartItems.removeAll { it.product.id == productId }
+    }
+
     fun getCartItems(): List<CartItem> = cartItems
 
-    // حساب السعر الإجمالي لجميع المنتجات في السلة
     fun getTotalPrice(): Double {
         return cartItems.sumOf { it.product.price * it.quantity }
     }
 
-    // تفريغ السلة بالكامل بعد إتمام الطلب بنجاح
     fun clearCart() {
         cartItems.clear()
     }
