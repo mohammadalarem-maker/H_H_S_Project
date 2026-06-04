@@ -9,11 +9,5 @@ jobs:
       with:
         java-version: '17'
         distribution: 'temurin'
-    - name: Grant Execute Permission
-      run: chmod +x gradlew
-    - name: Build with Gradle
-      run: ./gradlew :app:assembleDebug --no-daemon
-    - uses: actions/upload-artifact@v4
-      with:
-        name: HussamStore-APK
-        path: app/build/outputs/apk/debug/app-debug.apk
+    - name: List Gradle Tasks
+      run: ./gradlew tasks
