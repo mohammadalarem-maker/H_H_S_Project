@@ -9,5 +9,12 @@ jobs:
       with:
         java-version: '17'
         distribution: 'temurin'
-    - name: List Gradle Tasks
-      run: ./gradlew tasks
+    - name: Build APK
+      run: |
+        chmod +x gradlew
+        ./gradlew assembleDebug
+    - name: Find and Upload APK
+      uses: actions/upload-artifact@v4
+      with:
+        name: HussamStore-APK
+        path: '**/*.apk'
