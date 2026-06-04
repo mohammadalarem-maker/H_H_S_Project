@@ -11,10 +11,10 @@ jobs:
         distribution: 'temurin'
     - name: Grant Execute Permission
       run: chmod +x gradlew
-    - name: Build APK
-      run: ./gradlew :app:assembleDebug
+    - name: Build All
+      run: ./gradlew assembleDebug
     - name: Upload APK
       uses: actions/upload-artifact@v4
       with:
         name: HussamStore-APK
-        path: app/build/outputs/apk/debug/app-debug.apk
+        path: '**/*.apk'
