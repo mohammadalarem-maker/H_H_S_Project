@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hussam.hhsapp.R
 import com.hussam.hhsapp.data.cart.CartManager
+import com.hussam.hhsapp.ui.adapter.CartAdapter
 
 class CartActivity : AppCompatActivity() {
 
@@ -22,11 +23,15 @@ class CartActivity : AppCompatActivity() {
 
         rvCartItems.layoutManager = LinearLayoutManager(this)
         
-        // عرض المبلغ الإجمالي الحالي للقطع
+        // جلب عناصر السلة وتمريرها للمحول
+        val items = CartManager.getCartItems()
+        val adapter = CartAdapter(items)
+        rvCartItems.adapter = adapter
+        
+        // تحديث المجموع الإجمالي للريال
         tvCartTotal.text = "${CartManager.getTotalPrice()} YER"
 
-        // ملاحظة: سنقوم بإنشاء محول مخصص للسلة (CartAdapter) لعرض العناصر تفصيلياً في الخطوة القادمة
-        if (CartManager.getCartItems().isEmpty()) {
+        if (items.isEmpty()) {
             Toast.makeText(this, "السلة فارغة حالياً", Toast.LENGTH_SHORT).show()
         }
 
@@ -36,10 +41,12 @@ class CartActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            // محاكاة إرسال الطلب بنجاح وتفريغ السلة
             Toast.makeText(this, "تم إرسال طلبك بنجاح إلى متجر الحسام! جاري التجهيز...", Toast.LENGTH_LONG).show()
             CartManager.clearCart()
             tvCartTotal.text = "0.0 YER"
+            
+            // تحديث الواجهة بعد تفريغ السلة
+            rvCartItems.adapter = CartAdapter(emptyList())
             finish()
         }
     }
