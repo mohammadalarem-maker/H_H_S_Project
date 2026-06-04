@@ -7,6 +7,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.hussam.hhsapp.R
+import com.hussam.hhsapp.data.model.Product
+import com.hussam.hhsapp.data.cart.CartManager
 
 class ProductDetailActivity : AppCompatActivity() {
 
@@ -20,20 +22,24 @@ class ProductDetailActivity : AppCompatActivity() {
         val tvDesc = findViewById<TextView>(R.id.tvDetailDescription)
         val btnAddToCart = findViewById<Button>(R.id.btnAddToCart)
 
-        // استقبال البيانات الممررة من قائمة المنتجات
+        // استقبال بيانات المنتج
+        val id = intent.getStringExtra("PROD_ID") ?: ""
         val name = intent.getStringExtra("PROD_NAME") ?: "منتج غير معروف"
         val desc = intent.getStringExtra("PROD_DESC") ?: ""
         val price = intent.getDoubleExtra("PROD_PRICE", 0.0)
 
-        // عرض البيانات داخل الواجهة
+        // إعادة بناء كائن المنتج المحلي لحفظه في السلة
+        val currentProduct = Product(id = id, name = name, description = desc, price = price)
+
         tvName.text = name
         tvDesc.text = desc
         tvPrice.text = "$price YER"
-        ivImage.setImageResource(R.mipmap.ic_launcher) // افتراضية حالياً
+        ivImage.setImageResource(R.mipmap.ic_launcher)
 
         btnAddToCart.setOnClickListener {
-            Toast.makeText(this, "تمت إضافة $name إلى السلة بنجاح!", Toast.LENGTH_SHORT).show()
-            // هنا سنربطها لاحقاً بقاعدة بيانات السلة المحلية أو السحابية للطلب
+            // حفظ المنتج في مدير السلة الحقيقي
+            CartManager.addProduct(currentProduct)
+            Toast.makeText(this, "تمت إضافة $name إلى السلة! الإجمالي الحالي: ${CartManager.getTotalPrice()} YER", Toast.LENGTH_LONG).show()
         }
     }
 }

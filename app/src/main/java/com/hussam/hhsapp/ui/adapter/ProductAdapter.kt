@@ -34,10 +34,10 @@ class ProductAdapter(private val products: List<Product>) :
         holder.tvPrice.text = "${product.price} YER"
         holder.ivImage.setImageResource(R.mipmap.ic_launcher)
 
-        // حدث الضغط على الكرت لفتح تفاصيل المنتج
         holder.itemView.setOnClickListener {
             val context = holder.itemView.context
             val intent = Intent(context, ProductDetailActivity::class.java).apply {
+                putExtra("PROD_ID", product.id)
                 putExtra("PROD_NAME", product.name)
                 putExtra("PROD_DESC", product.description)
                 putExtra("PROD_PRICE", product.price)
