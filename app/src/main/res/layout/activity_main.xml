@@ -5,16 +5,34 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <!-- شريط علوي ترحيبي -->
-    <TextView
-        android:id="@+id/tvWelcome"
-        android:layout_width="wrap_content"
+    <!-- شريط علوي ترحيبي مع زر السلة -->
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="مرحباً بك في الحسام فون"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        android:layout_gravity="right"
-        android:layout_marginBottom="24dp"/>
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="24dp">
+        
+        <Button
+            android:id="@+id/btnOpenCart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="السلة 🛒"
+            android:backgroundTint="#E91E63"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:id="@+id/tvWelcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="مرحباً بك في الحسام فون"
+            android:textSize="22sp"
+            android:textStyle="bold"/>
+    </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
@@ -24,7 +42,6 @@
         android:layout_gravity="right"
         android:layout_marginBottom="12dp"/>
 
-    <!-- أزرار الأقسام الرئيسية للمتجر -->
     <Button
         android:id="@+id/btnPhones"
         android:layout_width="match_parent"
