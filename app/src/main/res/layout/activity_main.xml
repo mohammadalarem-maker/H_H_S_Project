@@ -7,7 +7,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="180dp"
+        android:layout_height="160dp"
         android:background="@drawable/main_header_bg"
         android:orientation="vertical"
         android:padding="24dp"
@@ -16,7 +16,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="الحسام فون"
+            android:text="الحسام فون والجمال"
             android:textColor="#FFFFFF"
             android:textSize="28sp"
             android:textStyle="bold" />
@@ -34,7 +34,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:padding="20dp"
+        android:padding="16dp"
         android:fillViewport="true">
 
         <LinearLayout
@@ -45,47 +45,94 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="الأقسام الرئيسية"
+                android:text="الأقسام التجارية للمتجر"
                 android:textColor="#2C3E50"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:layout_marginBottom="16dp"/>
+                android:layout_marginBottom="12dp"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="140dp"
+                android:layout_height="120dp"
                 android:orientation="horizontal"
-                android:layout_marginBottom="16dp">
+                android:layout_marginBottom="12dp">
 
                 <LinearLayout
-                    android:id="@+id/btnProducts"
+                    android:id="@+id/btnPhones"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="@drawable/bg_card_products"
                     android:orientation="vertical"
                     android:gravity="center"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginEnd="6dp"
                     android:clickable="true"
                     android:focusable="true">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="عرض المنتجات"
+                        android:text="الهواتف الذكية"
                         android:textColor="#FFFFFF"
-                        android:textSize="18sp"
+                        android:textSize="16sp"
                         android:textStyle="bold"/>
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/btnCart"
+                    android:id="@+id/btnAccessories"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="@drawable/bg_card_cart"
                     android:orientation="vertical"
                     android:gravity="center"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginStart="6dp"
+                    android:clickable="true"
+                    android:focusable="true">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="الإكسسوارات"
+                        android:textColor="#FFFFFF"
+                        android:textSize="16sp"
+                        android:textStyle="bold"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:orientation="horizontal"
+                android:layout_marginBottom="12dp">
+
+                <LinearLayout
+                    android:id="@+id/btnCosmetics"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_card_orders"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_marginEnd="6dp"
+                    android:clickable="true"
+                    android:focusable="true">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="مستحضرات التجميل"
+                        android:textColor="#FFFFFF"
+                        android:textSize="16sp"
+                        android:textStyle="bold"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/btnOpenCart"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_card_products"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_marginStart="6dp"
                     android:clickable="true"
                     android:focusable="true">
                     <TextView
@@ -93,56 +140,28 @@
                         android:layout_height="wrap_content"
                         android:text="عربة التسوق"
                         android:textColor="#FFFFFF"
-                        android:textSize="18sp"
+                        android:textSize="16sp"
                         android:textStyle="bold"/>
                 </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/btnOpenProfile"
                 android:layout_width="match_parent"
-                android:layout_height="140dp"
-                android:orientation="horizontal"
+                android:layout_height="90dp"
+                android:background="@drawable/bg_card_profile"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:clickable="true"
+                android:focusable="true"
                 android:layout_marginBottom="16dp">
-
-                <LinearLayout
-                    android:id="@+id/btnOrders"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@drawable/bg_card_orders"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:layout_marginEnd="8dp"
-                    android:clickable="true"
-                    android:focusable="true">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="سجل الطلبات"
-                        android:textColor="#FFFFFF"
-                        android:textSize="18sp"
-                        android:textStyle="bold"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/btnProfile"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@drawable/bg_card_profile"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:layout_marginStart="8dp"
-                    android:clickable="true"
-                    android:focusable="true">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="الملف الشخصي"
-                        android:textColor="#FFFFFF"
-                        android:textSize="18sp"
-                        android:textStyle="bold"/>
-                </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="الملف الشخصي والحساب"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
             </LinearLayout>
 
         </LinearLayout>
