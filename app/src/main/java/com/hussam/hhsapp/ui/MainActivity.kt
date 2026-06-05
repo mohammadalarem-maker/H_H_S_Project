@@ -15,21 +15,21 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // 1. ربط الأزرار الخمسة الأساسية الموجودة في الواجهة الفخمة الجديدة
+        // ربط الأزرار الخمسة الأساسية للوحة التحكم الجديدة
         val btnPhones = findViewById<LinearLayout>(R.id.btnPhones)
         val btnAccessories = findViewById<LinearLayout>(R.id.btnAccessories)
         val btnCosmetics = findViewById<LinearLayout>(R.id.btnCosmetics)
         val btnOpenCart = findViewById<LinearLayout>(R.id.btnOpenCart)
         val btnOpenProfile = findViewById<LinearLayout>(R.id.btnOpenProfile)
 
-        // 2. جلب العناصر القديمة ديناميكياً باسمها النصي لتفادي أخطاء البناء تماماً إذا حُذفت من الـ XML
+        // جلب العناصر القديمة ديناميكياً باسمها النصي لتفادي أخطاء البناء تماماً
         val tvUserEmailId = resources.getIdentifier("tvUserEmail", "id", packageName)
         val tvUserEmail = if (tvUserEmailId != 0) findViewById<TextView>(tvUserEmailId) else null
 
         val btnLogoutId = resources.getIdentifier("btnLogout", "id", packageName)
         val btnLogout = if (btnLogoutId != 0) findViewById<View>(btnLogoutId) else null
 
-        // 3. تفعيل الأزرار والبطاقات التجارية للتنقل بسلاسة
+        // تفعيل الأزرار والبطاقات التجارية للتنقل بسلاسة
         btnPhones?.setOnClickListener {
             try {
                 startActivity(Intent(this, ProductListActivity::class.java))
@@ -70,7 +70,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        // تشغيل زر تسجيل الخروج القديم بأمان كامل في حال وجوده بالخلفية
         btnLogout?.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
