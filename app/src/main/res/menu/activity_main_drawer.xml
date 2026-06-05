@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item android:id="@+id/nav_home" android:title="الرئيسية" />
+        <item android:id="@+id/nav_sales" android:title="حركة البيع" />
+        <item android:id="@+id/nav_stock" android:title="المخزون" />
+        <item android:id="@+id/nav_profile" android:title="الملف الشخصي" />
+    </group>
+</menu>

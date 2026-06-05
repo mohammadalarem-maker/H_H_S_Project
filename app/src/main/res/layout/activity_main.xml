@@ -1,143 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/login_bg"
-    android:fillViewport="true">
+    android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="20dp">
+    <include layout="@layout/content_dashboard" />
 
-        <!-- الهيدر العلوي المتناسق -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="الحسام فون والجمال"
-            android:textColor="#FFFFFF"
-            android:textSize="28sp"
-            android:textStyle="bold"
-            android:layout_marginTop="16dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="أهلاً بك، أبو كريم المتميز"
-            android:textColor="#B0BEC5"
-            android:textSize="16sp"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="24dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="الأقسام التجارية للمتجر"
-            android:textColor="#FFFFFF"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="16dp"/>
-
-        <!-- قسم الهواتف الذكية -->
-        <LinearLayout
-            android:id="@+id/btnPhones"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="@drawable/bg_phones"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_marginBottom="12dp"
-            android:clickable="true"
-            android:focusable="true">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="الهواتف الذكية"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp"
-                android:textStyle="bold"/>
-        </LinearLayout>
-
-        <!-- قسم الإكسسوارات -->
-        <LinearLayout
-            android:id="@+id/btnAccessories"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="@drawable/bg_accessories"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_marginBottom="12dp"
-            android:clickable="true"
-            android:focusable="true">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="الإكسسوارات"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp"
-                android:textStyle="bold"/>
-        </LinearLayout>
-
-        <!-- قسم مستحضرات التجميل -->
-        <LinearLayout
-            android:id="@+id/btnCosmetics"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="@drawable/bg_cosmetics"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_marginBottom="12dp"
-            android:clickable="true"
-            android:focusable="true">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="مستحضرات التجميل"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp"
-                android:textStyle="bold"/>
-        </LinearLayout>
-
-        <!-- قسم عربة التسوق -->
-        <LinearLayout
-            android:id="@+id/btnOpenCart"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="@drawable/bg_cart"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_marginBottom="12dp"
-            android:clickable="true"
-            android:focusable="true">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="عربة التسوق"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp"
-                android:textStyle="bold"/>
-        </LinearLayout>
-
-        <!-- قسم الملف الشخصي -->
-        <LinearLayout
-            android:id="@+id/btnOpenProfile"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="@drawable/bg_profile"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_marginBottom="24dp"
-            android:clickable="true"
-            android:focusable="true">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="الملف الشخصي والحساب"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp"
-                android:textStyle="bold"/>
-        </LinearLayout>
-
-    </LinearLayout>
-</ScrollView>
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:menu="@menu/activity_main_drawer" />
+</androidx.drawerlayout.widget.DrawerLayout>
