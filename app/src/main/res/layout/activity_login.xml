@@ -22,20 +22,16 @@
             android:layout_height="wrap_content"
             android:text="الحسام فون"
             android:textColor="#FFFFFF"
-            android:textSize="36sp"
-            android:textStyle="bold"
-            android:shadowColor="#50000000"
-            android:shadowDx="3"
-            android:shadowDy="3"
-            android:shadowRadius="4" />
+            android:textSize="38sp"
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="بوابتك لعالم الإلكترونيات الذكية"
-            android:textColor="#B0BEC5"
+            android:textColor="#90A4AE"
             android:textSize="14sp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="6dp"
             android:layout_marginBottom="40dp" />
 
         <EditText
@@ -45,10 +41,11 @@
             android:background="@drawable/input_bg"
             android:hint="البريد الإلكتروني"
             android:textColor="#2C3E50"
-            android:textColorHint="#95A5A6"
+            android:textColorHint="#7F8C8D"
             android:inputType="textEmailAddress"
             android:paddingHorizontal="20dp"
-            android:layout_marginBottom="16dp" />
+            android:layout_marginBottom="16dp"
+            android:gravity="right|center_vertical" />
 
         <EditText
             android:id="@+id/etPassword"
@@ -57,10 +54,11 @@
             android:background="@drawable/input_bg"
             android:hint="كلمة المرور"
             android:textColor="#2C3E50"
-            android:textColorHint="#95A5A6"
+            android:textColorHint="#7F8C8D"
             android:inputType="textPassword"
             android:paddingHorizontal="20dp"
-            android:layout_marginBottom="32dp" />
+            android:layout_marginBottom="32dp"
+            android:gravity="right|center_vertical" />
 
         <Button
             android:id="@+id/btnLogin"
