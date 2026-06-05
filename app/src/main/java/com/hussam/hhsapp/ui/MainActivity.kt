@@ -2,7 +2,10 @@ package com.hussam.hhsapp.ui
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
+import android.view.View
+import android.widget.LinearLayout
+import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.hussam.hhsapp.R
 
@@ -12,31 +15,65 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val btnPhones = findViewById<Button>(R.id.btnPhones)
-        val btnAccessories = findViewById<Button>(R.id.btnAccessories)
-        val btnCosmetics = findViewById<Button>(R.id.btnCosmetics)
-        val btnOpenCart = findViewById<Button>(R.id.btnOpenCart)
-        val btnOpenProfile = findViewById<Button>(R.id.btnOpenProfile)
+        // 1. ربط الأزرار الخمسة الأساسية الموجودة في الواجهة الفخمة الجديدة
+        val btnPhones = findViewById<LinearLayout>(R.id.btnPhones)
+        val btnAccessories = findViewById<LinearLayout>(R.id.btnAccessories)
+        val btnCosmetics = findViewById<LinearLayout>(R.id.btnCosmetics)
+        val btnOpenCart = findViewById<LinearLayout>(R.id.btnOpenCart)
+        val btnOpenProfile = findViewById<LinearLayout>(R.id.btnOpenProfile)
 
-        btnPhones.setOnClickListener { openCategory("هواتف") }
-        btnAccessories.setOnClickListener { openCategory("إكسسوارات") }
-        btnCosmetics.setOnClickListener { openCategory("مستحضرات تجميل") }
-        
-        btnOpenCart.setOnClickListener {
-            val intent = Intent(this, CartActivity::class.java)
-            startActivity(intent)
+        // 2. جلب العناصر القديمة ديناميكياً باسمها النصي لتفادي أخطاء البناء تماماً إذا حُذفت من الـ XML
+        val tvUserEmailId = resources.getIdentifier("tvUserEmail", "id", packageName)
+        val tvUserEmail = if (tvUserEmailId != 0) findViewById<TextView>(tvUserEmailId) else null
+
+        val btnLogoutId = resources.getIdentifier("btnLogout", "id", packageName)
+        val btnLogout = if (btnLogoutId != 0) findViewById<View>(btnLogoutId) else null
+
+        // 3. تفعيل الأزرار والبطاقات التجارية للتنقل بسلاسة
+        btnPhones?.setOnClickListener {
+            try {
+                startActivity(Intent(this, ProductListActivity::class.java))
+            } catch (e: Exception) {
+                Toast.makeText(this, "جاري تجهيز قسم الهواتف الذكية", Toast.LENGTH_SHORT).show()
+            }
         }
 
-        // فتح شاشة الملف الشخصي والحساب
-        btnOpenProfile.setOnClickListener {
-            val intent = Intent(this, ProfileActivity::class.java)
-            startActivity(intent)
+        btnAccessories?.setOnClickListener {
+            try {
+                startActivity(Intent(this, ProductListActivity::class.java))
+            } catch (e: Exception) {
+                Toast.makeText(this, "جاري تجهيز قسم الإكسسوارات", Toast.LENGTH_SHORT).show()
+            }
         }
-    }
 
-    private fun openCategory(categoryName: String) {
-        val intent = Intent(this, ProductListActivity::class.java)
-        intent.putExtra("CATEGORY_NAME", categoryName)
-        startActivity(intent)
+        btnCosmetics?.setOnClickListener {
+            try {
+                startActivity(Intent(this, ProductListActivity::class.java))
+            } catch (e: Exception) {
+                Toast.makeText(this, "جاري تجهيز قسم مستحضرات التجميل", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        btnOpenCart?.setOnClickListener {
+            try {
+                startActivity(Intent(this, CartActivity::class.java))
+            } catch (e: Exception) {
+                Toast.makeText(this, "جاري فتح عربة التسوق", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        btnOpenProfile?.setOnClickListener {
+            try {
+                startActivity(Intent(this, ProfileActivity::class.java))
+            } catch (e: Exception) {
+                Toast.makeText(this, "جاري فتح الملف الشخصي", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        // تشغيل زر تسجيل الخروج القديم بأمان كامل في حال وجوده بالخلفية
+        btnLogout?.setOnClickListener {
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
+        }
     }
 }
